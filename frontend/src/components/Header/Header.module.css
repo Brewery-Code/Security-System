@@ -1,0 +1,42 @@
+.header {
+  box-shadow: 0 4px 20px rgba(222, 222, 222, 0.2);
+}
+
+.header__body {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  padding: 3px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.logo__img {
+  width: 55px;
+  height: 55px;
+}
+
+.logo__title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav__list {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.nav__item {
+  font-size: 16px;
+  cursor: pointer;
+}
