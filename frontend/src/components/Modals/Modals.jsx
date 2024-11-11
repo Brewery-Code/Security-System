@@ -1,8 +1,6 @@
 import { createPortal } from 'react-dom';
-import { useState } from 'react';
 
 import styles from './Modals.module.css';
-import CreateAccount from './CreateAccount/CreateAccount';
 
 export default function Modals({ isModalOpen, toggleModal, chosenModal }) {
   return createPortal(

@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import styles from './SignIn.module.css';
 
-export default function SignIn({ choseModal }) {
+export default function SignIn({ choseModal, toggleModal }) {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+
+  const [isRequestBad, setIsRequestBad] = useState(false);
+  const toggleRequest = () => { setIsRequestBad(prev => !prev) }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,8 +37,14 @@ export default function SignIn({ choseModal }) {
         console.log('Okay: ', result);
         localStorage.setItem('access_token', result.access);
         localStorage.setItem('refresh_token', result.refresh);
+        toggleModal();
       } else {
         console.error('Mistake: ', response.statusText);
+        setFormData({
+          email: '',
+          password: '',
+        });
+        toggleRequest();
       }
     } catch (error) {
       console.error('Mistake: ', error)
@@ -45,7 +54,7 @@ export default function SignIn({ choseModal }) {
   return (
     <>
       <div className={styles.body}>
-        <h1 className={styles.body__title}>Create Account</h1>
+        <h1 className={styles.body__title}>Sign In</h1>
         <h2 className={styles.body__subtitle}>
           <span>Don't have an account?</span>
           <div
@@ -59,18 +68,20 @@ export default function SignIn({ choseModal }) {
         >
           <div className={styles.form__item}>
             <label className={styles.form__label} htmlFor="email">E-mail</label>
-            <input className={styles.form__input}
+            <input className={isRequestBad ? `${styles.form__input} ${styles.form__input_invalid}` : styles.form__input}
               type="email"
               name="email"
+              placeholder={isRequestBad ? 'Invalid data' : 'e-mail@example.com'}
               value={formData.email}
               onChange={handleChange}
             />
           </div>
           <div className={styles.form__item}>
             <label className={styles.form__label} htmlFor="password">Password</label>
-            <input className={styles.form__input}
+            <input className={isRequestBad ? `${styles.form__input} ${styles.form__input_invalid}` : styles.form__input}
               type="password"
               name="password"
+              placeholder={isRequestBad ? 'Invalid data' : '********'}
               value={formData.password}
               onChange={handleChange}
             />

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './CreateAccount.module.css';
 
-export default function CreateAccount({ choseModal }) {
+export default function CreateAccount({ choseModal, toggleModal }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -35,6 +35,7 @@ export default function CreateAccount({ choseModal }) {
         console.log('Okay: ', result);
         localStorage.setItem('access_token', result.access);
         localStorage.setItem('refresh_token', result.refresh);
+        toggleModal();
       } else {
         console.error('Mistake: ', response.statusText);
       }

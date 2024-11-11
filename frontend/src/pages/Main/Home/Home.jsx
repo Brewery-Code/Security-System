@@ -14,10 +14,10 @@ export default function Home() {
   const choseModal = (chose) => {
     switch (chose) {
       case 'Sign In':
-        setChosenModal(<SignIn choseModal={choseModal} />);
+        setChosenModal(<SignIn choseModal={choseModal} toggleModal={toggleModal} />);
         break;
       case 'Create Account':
-        setChosenModal(<CreateAccount choseModal={choseModal} />);
+        setChosenModal(<CreateAccount choseModal={choseModal} toggleModal={toggleModal} />);
         break;
       default:
         console.error('Error at modals form.');
