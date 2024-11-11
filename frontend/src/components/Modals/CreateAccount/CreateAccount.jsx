@@ -23,7 +23,7 @@ export default function CreateAccount({ choseModal }) {
 
   const sendData = async (data) => {
     try {
-      const response = await fetch('127.0.0.1:8000/auth/register/', {
+      const response = await fetch('http://127.0.0.1:8000/auth/register/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -32,12 +32,14 @@ export default function CreateAccount({ choseModal }) {
       });
       if (response.ok) {
         const result = await response.json();
-        console.log('Okay', result);
+        console.log('Okay: ', result);
+        localStorage.setItem('access_token', result.access);
+        localStorage.setItem('refresh_token', result.refresh);
       } else {
-        console.error('Mistake', response.statusText);
+        console.error('Mistake: ', response.statusText);
       }
     } catch (error) {
-      console.error('Mistake', error)
+      console.error('Mistake: ', error)
     }
   }
 

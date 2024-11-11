@@ -1,9 +1,47 @@
 import { useState } from 'react';
-import Modals from '../Modals';
-import CreateAccount from '../CreateAccount/CreateAccount';
 import styles from './SignIn.module.css';
 
 export default function SignIn({ choseModal }) {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sendData(formData);
+  }
+
+  const sendData = async (data) => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/auth/login/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Okay: ', result);
+        localStorage.setItem('access_token', result.access);
+        localStorage.setItem('refresh_token', result.refresh);
+      } else {
+        console.error('Mistake: ', response.statusText);
+      }
+    } catch (error) {
+      console.error('Mistake: ', error)
+    }
+  }
+
   return (
     <>
       <div className={styles.body}>
@@ -16,14 +54,26 @@ export default function SignIn({ choseModal }) {
             }}
           >Create Account.</div>
         </h2>
-        <form className={styles.form}>
+        <form className={styles.form}
+          onSubmit={handleSubmit}
+        >
           <div className={styles.form__item}>
-            <label className={styles.form__label} htmlFor="">E-mail</label>
-            <input className={styles.form__input} type="email" name="" id="" />
+            <label className={styles.form__label} htmlFor="email">E-mail</label>
+            <input className={styles.form__input}
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
           </div>
           <div className={styles.form__item}>
-            <label className={styles.form__label} htmlFor="">Password</label>
-            <input className={styles.form__input} type="password" name="" id="" />
+            <label className={styles.form__label} htmlFor="password">Password</label>
+            <input className={styles.form__input}
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
           </div>
           <button className={styles.form__button} type="submit">Submit</button>
         </form>
