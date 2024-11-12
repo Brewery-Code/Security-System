@@ -1,4 +1,6 @@
-.home {}
+.home {
+  flex: 1 1 auto;
+}
 
 .home__title {
   font-size: 72px;

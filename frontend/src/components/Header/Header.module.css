@@ -33,10 +33,44 @@
 .nav__list {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   width: 100%;
 }
 
 .nav__item {
+  position: relative;
   font-size: 16px;
   cursor: pointer;
+}
+
+.nav__item::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  height: 1px;
+  width: 0;
+  background-color: grey;
+  transition: left 0.3s ease, width 0.3s ease;
+}
+
+.nav__item:hover::before {
+  left: 0;
+  width: 100%;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.profile__img {
+  height: 40px;
+  width: 40px;
+}
+
+.profile__name {
+  font-size: 16px;
 }

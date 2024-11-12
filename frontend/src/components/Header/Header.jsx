@@ -1,8 +1,9 @@
 import LogoImg from '../../assets/img/logo.png';
+import ProfileImg from '../../assets/img/profile-img.svg';
 
 import styles from './Header.module.css';
 
-export default function Header() {
+export default function Header({ isUserLogin }) {
   return (
     <header className={styles.header}>
       <div className='header__container'>
@@ -16,7 +17,11 @@ export default function Header() {
               <li className={styles.nav__item}>GitHub</li>
               <li className={styles.nav__item}>University</li>
               <li className={styles.nav__item}>About Us</li>
-              <li className={styles.nav__item}></li>
+              {isUserLogin ?
+                <li className={styles.profile}>
+                  <img className={styles.profile__img} src={ProfileImg} alt="profileImg" />
+                  <div className={styles.profile__name}>Name</div>
+                </li> : ''}
             </ul>
           </nav>
         </div>

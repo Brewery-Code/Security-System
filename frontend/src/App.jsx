@@ -39,12 +39,10 @@ function App() {
     setIsUserLogin(accessTokenValid || refreshTokenValid);
   }, []);
 
-
-
   return (
     <BrowserRouter>
       <div className='wrapper'>
-        <Header />
+        <Header isUserLogin={isUserLogin} />
         <Main isUserLogin={isUserLogin} toggleUserLogin={toggleUserLogin} />
       </div>
     </BrowserRouter>
