@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './SignIn.module.css';
 
-export default function SignIn({ choseModal, toggleModal }) {
+export default function SignIn({ choseModal, toggleModal, toggleUserLogin }) {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -38,6 +38,7 @@ export default function SignIn({ choseModal, toggleModal }) {
         localStorage.setItem('access_token', result.access);
         localStorage.setItem('refresh_token', result.refresh);
         toggleModal();
+        toggleUserLogin();
       } else {
         console.error('Mistake: ', response.statusText);
         setFormData({
