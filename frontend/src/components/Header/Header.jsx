@@ -14,9 +14,24 @@ export default function Header({ isUserLogin }) {
           </div>
           <nav className={styles.nav}>
             <ul className={styles.nav__list}>
-              <li className={styles.nav__item}>GitHub</li>
-              <li className={styles.nav__item}>University</li>
-              <li className={styles.nav__item}>About Us</li>
+              <li className={styles.nav__item}>
+                <a href="https://github.com/Brewery-Code/Security-System"
+                  target='_blank'
+                  rel='noopener noreferrer'>GitHub
+                </a>
+              </li>
+              <li className={styles.nav__item}>
+                <a href="https://nuwm.edu.ua/"
+                  target='_blank'
+                  rel='noopener noreferrer'>University
+                </a>
+              </li>
+              <li className={styles.nav__item}>
+                <a href="https://github.com/VitaliiParkhomchuk"
+                  target='_blank'
+                  rel='noopener noreferrer'>About us
+                </a>
+              </li>
               {isUserLogin ?
                 <li className={styles.profile}>
                   <img className={styles.profile__img} src={ProfileImg} alt="profileImg" />
@@ -26,6 +41,6 @@ export default function Header({ isUserLogin }) {
           </nav>
         </div>
       </div>
-    </header>
+    </header >
   );
 }
