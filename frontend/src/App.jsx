@@ -8,42 +8,51 @@ function App() {
   const [isUserLogin, setIsUserLogin] = useState(false);
   const toggleUserLogin = () => { setIsUserLogin(prev => !prev) }
 
-  const isTokenExpired = () => {
-    try {
-      const payload = JSON.parse(atob(localStorage.getItem('access_token').split('.')[1]));
-      const expiryTime = payload.exp * 1000;
-      console.log(expiryTime);
-      return Date.now() > expiryTime;
-    } catch (error) {
-      console.error('Помилка декодування токену:', error);
-      localStorage.clear();
+  let checkpoint = 0;
+  useEffect(() => {
+    if (localStorage.getItem('access_token') !== null && checkpoint == 0) {
       toggleUserLogin();
-      return true;
+      checkpoint++;
     }
-  }
+  }, [])
 
-  const [isAccessTokenValid, setIsAccessTokenValid] = useState(false);
-  const [isRefreshTokenValid, setIsRefreshTokenValid] = useState(false);
-
-  const accessToken = localStorage.getItem('access_token');
-  const refreshToken = localStorage.getItem('refresh_token');
+  const [userData, setUserData] = useState({
+    name: 'Name',
+    email: 'email',
+  });
 
   useEffect(() => {
-    const accessToken = localStorage.getItem('access_token');
-    const refreshToken = localStorage.getItem('refresh_token');
-    const accessTokenValid = !isTokenExpired(accessToken);
-    const refreshTokenValid = !isTokenExpired(refreshToken);
-    setIsAccessTokenValid(accessTokenValid);
-    setIsRefreshTokenValid(refreshTokenValid);
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('access_token');
+        const response = await fetch('http://localhost:8000/user/profile/', {
+          method: 'GET',
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error("Помилка при завантаженні даних");
+        } else {
+          const result = await response.json();
+          setUserData(result);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-    setIsUserLogin(accessTokenValid || refreshTokenValid);
-  }, []);
+    if (isUserLogin) {
+      fetchData();
+    }
+  }, [isUserLogin]);
 
   return (
     <BrowserRouter>
       <div className='wrapper'>
         <Header isUserLogin={isUserLogin} />
-        <Main isUserLogin={isUserLogin} toggleUserLogin={toggleUserLogin} />
+        <Main isUserLogin={isUserLogin} toggleUserLogin={toggleUserLogin} userData={userData} />
       </div>
     </BrowserRouter>
   )

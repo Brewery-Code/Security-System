@@ -5,7 +5,7 @@ import NewDevice from '../../../../components/Modals/NewDevice/NewDevice';
 
 import styles from './LoggedIn.module.css';
 
-export default function LoggedIn() {
+export default function LoggedIn({ userData }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => { setIsModalOpen(prev => !prev) }
   const chosenModal = <NewDevice />;
@@ -16,10 +16,12 @@ export default function LoggedIn() {
           <div className="">
             <button className={styles['top-bar__new']}
               onClick={toggleModal}
-            >New +</button>
+            >
+              New +
+            </button>
           </div>
-          <h3 className={styles['top-bar__name']}>Name</h3>
-          <h3 className={styles['top-bar__email']}>E-mail@example.com</h3>
+          <h3 className={styles['top-bar__name']}>{userData.name}</h3>
+          <h3 className={styles['top-bar__email']}>{userData.email}</h3>
         </div>
         <div className={styles.devices}>
           <div className={styles.devices__item}>Item</div>
