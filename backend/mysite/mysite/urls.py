@@ -6,5 +6,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('authentication.urls'), name='authentication'),
     path('user/', include('user.urls'), name='user'),
-    path('available-sensors/', include('core.urls'))
+    path('', include('core.urls'))
 ]
