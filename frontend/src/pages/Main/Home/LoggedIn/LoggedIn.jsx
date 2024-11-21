@@ -33,8 +33,13 @@ export default function LoggedIn({ userData }) {
       }
     };
 
-    fetchData();
-  }, []);
+    // Встановлюємо інтервал
+    const intervalId = setInterval(fetchData, 500);
+
+    // Очищаємо інтервал при розмонтуванні компонента
+    return () => clearInterval(intervalId);
+  }, []); // Залежностей немає, щоб інтервал запускався один раз
+
 
 
   return (
