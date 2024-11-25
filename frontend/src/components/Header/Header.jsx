@@ -3,7 +3,7 @@ import ProfileImg from '../../assets/img/profile-img.svg';
 
 import styles from './Header.module.css';
 
-export default function Header({ isUserLogin }) {
+export default function Header({ isUserLogin, userData }) {
   return (
     <header className={styles.header}>
       <div className='header__container'>
@@ -35,7 +35,7 @@ export default function Header({ isUserLogin }) {
               {isUserLogin ?
                 <li className={styles.profile}>
                   <img className={styles.profile__img} src={ProfileImg} alt="profileImg" />
-                  <div className={styles.profile__name}>Name</div>
+                  <div className={styles.profile__name}>{userData.name}</div>
                 </li> : ''}
             </ul>
           </nav>

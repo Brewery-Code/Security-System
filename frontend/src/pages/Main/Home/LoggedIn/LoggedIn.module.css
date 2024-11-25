@@ -40,11 +40,21 @@
   color: grey;
 }
 
-.devices,
+.devices {
+  grid-column: 1 / -1;
+}
+
+.device__item,
 .indicators {
   padding: 16px;
 }
 
-.devices {
+.device {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid black;
+}
+
+.device__item {
   border-right: 1px solid black;
 }

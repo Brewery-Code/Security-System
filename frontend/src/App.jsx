@@ -51,7 +51,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className='wrapper'>
-        <Header isUserLogin={isUserLogin} />
+        <Header isUserLogin={isUserLogin} userData={userData} />
         <Main isUserLogin={isUserLogin} toggleUserLogin={toggleUserLogin} userData={userData} />
       </div>
     </BrowserRouter>

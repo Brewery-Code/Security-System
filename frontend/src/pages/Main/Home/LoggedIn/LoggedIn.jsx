@@ -27,18 +27,16 @@ export default function LoggedIn({ userData }) {
           throw new Error('Помилка при завантаженні даних');
         }
         const result = await response.json();
-        setDevicesData(result); // Зберігаємо отримані дані у стан
+        setDevicesData(result);
       } catch (error) {
         console.error(error);
       }
     };
 
-    // Встановлюємо інтервал
     const intervalId = setInterval(fetchData, 500);
 
-    // Очищаємо інтервал при розмонтуванні компонента
     return () => clearInterval(intervalId);
-  }, []); // Залежностей немає, щоб інтервал запускався один раз
+  }, []);
 
 
 
@@ -56,23 +54,25 @@ export default function LoggedIn({ userData }) {
           <h3 className={styles['top-bar__name']}>{userData.name}</h3>
           <h3 className={styles['top-bar__email']}>{userData.email}</h3>
         </div>
-        {devicesData.length > 0 ? (
-          devicesData.map((device) => (
+        <div className={styles.devices}>
+          {devicesData.length > 0 ? (
+            devicesData.map((device) => (
+              <>
+                <div key={1} className={styles.device}>
+                  <div className={styles.device__item}>{device.name}</div>
+                  <div className={styles.indicators}>{device.sensor_value}</div>
+                </div>
+              </>
+            ))
+          ) : (
             <>
               <div key={1} className={styles.devices}>
-                <div className={styles.devices__item}>{device.name}</div>
+                <div className={styles.devices__item}>Item</div>
               </div>
-              <div className={styles.indicators}>{device.sensor_value}</div>
+              <div className={styles.indicators}>Test</div>
             </>
-          ))
-        ) : (
-          <>
-            <div key={1} className={styles.devices}>
-              <div className={styles.devices__item}>Item</div>
-            </div>
-            <div className={styles.indicators}>Test</div>
-          </>
-        )}
+          )}
+        </div>
       </section>
       <Modals isModalOpen={isModalOpen} toggleModal={toggleModal} chosenModal={chosenModal} />
     </>
