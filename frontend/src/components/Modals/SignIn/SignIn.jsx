@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './SignIn.module.css';
+import IP from '../../../../IP.js';
 
 export default function SignIn({ choseModal, toggleModal, toggleUserLogin }) {
   const [formData, setFormData] = useState({
@@ -25,7 +26,7 @@ export default function SignIn({ choseModal, toggleModal, toggleUserLogin }) {
 
   const sendData = async (data) => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/auth/login/', {
+      const response = await fetch(`http://${IP}:8000/auth/login/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -5,6 +5,8 @@ import NewDevice from '../../../../components/Modals/NewDevice/NewDevice';
 
 import styles from './LoggedIn.module.css';
 
+import IP from '../../../../../IP.js';
+
 export default function LoggedIn({ userData }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => { setIsModalOpen(prev => !prev) }
@@ -16,7 +18,7 @@ export default function LoggedIn({ userData }) {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('access_token');
-        const response = await fetch('http://localhost:8000/sensors/get/', {
+        const response = await fetch(`http://${IP}:8000/sensors/get/`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

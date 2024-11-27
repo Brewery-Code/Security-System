@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './CreateAccount.module.css';
+import IP from '../../../../IP.js';
 
 export default function CreateAccount({ choseModal, toggleModal, toggleUserLogin }) {
   const [formData, setFormData] = useState({
@@ -23,7 +24,7 @@ export default function CreateAccount({ choseModal, toggleModal, toggleUserLogin
 
   const sendData = async (data) => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/auth/register/', {
+      const response = await fetch(`http://${IP}:8000/auth/register/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

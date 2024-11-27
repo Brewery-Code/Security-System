@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './NewDevice.module.css';
+import IP from '../../../../IP.js';
 
 export default function NewDevice() {
   const [formData, setFormData] = useState({
@@ -19,7 +20,7 @@ export default function NewDevice() {
     e.preventDefault();
     try {
       const token = localStorage.getItem('access_token');
-      const response = await fetch('http://localhost:8000/sensors/create/', {
+      const response = await fetch(`http://${IP}:8000/sensors/create/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

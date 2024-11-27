@@ -4,6 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 import Header from "./components/Header/Header";
 import Main from "./pages/Main/Main";
 
+import IP from '../IP.js';
+
 function App() {
   const [isUserLogin, setIsUserLogin] = useState(false);
   const toggleUserLogin = () => { setIsUserLogin(prev => !prev) }
@@ -25,7 +27,7 @@ function App() {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('access_token');
-        const response = await fetch('http://localhost:8000/user/profile/', {
+        const response = await fetch(`http://${IP}:8000/user/profile/`, {
           method: 'GET',
           headers: {
             "Content-Type": "application/json",
