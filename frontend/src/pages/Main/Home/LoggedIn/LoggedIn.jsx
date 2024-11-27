@@ -10,7 +10,7 @@ import IP from '../../../../../IP.js';
 export default function LoggedIn({ userData }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => { setIsModalOpen(prev => !prev) }
-  const chosenModal = <NewDevice />;
+  const chosenModal = <NewDevice toggleModal={toggleModal} />;
 
   const [devicesData, setDevicesData] = useState([]);
 
@@ -69,9 +69,8 @@ export default function LoggedIn({ userData }) {
           ) : (
             <>
               <div key={1} className={styles.devices}>
-                <div className={styles.devices__item}>Item</div>
+                <div className={styles.devices__item_empty}>Add your devices!)</div>
               </div>
-              <div className={styles.indicators}>Test</div>
             </>
           )}
         </div>

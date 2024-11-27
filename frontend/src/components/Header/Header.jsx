@@ -1,9 +1,13 @@
+import { useState } from 'react';
 import LogoImg from '../../assets/img/logo.png';
 import ProfileImg from '../../assets/img/profile-img.svg';
 
 import styles from './Header.module.css';
 
 export default function Header({ isUserLogin, userData }) {
+  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+  const toggleBurgerMenu = () => { setIsBurgerMenuOpen(prev => !prev) }
+
   return (
     <header className={styles.header}>
       <div className='header__container'>
@@ -12,7 +16,7 @@ export default function Header({ isUserLogin, userData }) {
             <img className={styles.logo__img} src={LogoImg} alt="LogoImg" />
             <div className={styles.logo__title}>Security System</div>
           </div>
-          <nav className={styles.nav}>
+          <nav className={!isBurgerMenuOpen ? styles.nav : `${styles.nav} ${styles.nav_active}`}>
             <ul className={styles.nav__list}>
               <li className={styles.nav__item}>
                 <a href="https://github.com/Brewery-Code/Security-System"
@@ -39,6 +43,11 @@ export default function Header({ isUserLogin, userData }) {
                 </li> : ''}
             </ul>
           </nav>
+          <div className={!isBurgerMenuOpen ? styles.burger : `${styles.burger} ${styles.burger_active}`}
+            onClick={toggleBurgerMenu}
+          >
+            <span></span>
+          </div>
         </div>
       </div>
     </header >

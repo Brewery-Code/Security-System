@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './NewDevice.module.css';
 import IP from '../../../../IP.js';
 
-export default function NewDevice() {
+export default function NewDevice({ toggleModal }) {
   const [formData, setFormData] = useState({
     serial_number: '',
     sensor_name: '',
@@ -40,6 +40,7 @@ export default function NewDevice() {
       console.log('Device added successfully:', result);
 
       setFormData({ sensor_name: '', serial_number: '' });
+      toggleModal();
     } catch (error) {
       console.error('Error:', error.message);
     }

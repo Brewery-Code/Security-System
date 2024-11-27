@@ -43,7 +43,6 @@
 }
 
 .account__sign-in:hover {
-  /* background-color: #fff; */
   color: #000;
 }
 
@@ -53,6 +52,17 @@
 }
 
 .account__create:hover {
-  /* background-color: black; */
   color: #fff;
+}
+
+@media (max-width: 522px) {
+  .home__title {
+    font-size: 52px;
+  }
+
+  .account {
+    margin-top: 60px;
+    display: grid;
+    justify-content: center;
+  }
 }

@@ -35,14 +35,17 @@ export default function NotLoggedIn({ toggleUserLogin }) {
               choseModal('Sign In');
               toggleModal();
             }}
-          >Sign In</button>
+          >
+            Sign In
+          </button>
           <button className={styles['account__create']}
             onClick={() => {
               choseModal('Create Account');
               toggleModal();
             }}
           >
-            Create Account</button>
+            Create Account
+          </button>
         </div>
       </section>
       <Modals isModalOpen={isModalOpen} toggleModal={toggleModal} chosenModal={chosenModal} />

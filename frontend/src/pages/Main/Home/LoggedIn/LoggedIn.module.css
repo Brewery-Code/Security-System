@@ -58,3 +58,20 @@
 .device__item {
   border-right: 1px solid black;
 }
+
+.devices__item_empty {
+  width: 100%;
+  margin-top: 30px;
+  font-size: 24px;
+  text-align: center;
+}
+
+@media (max-width: 400px) {
+  .top-bar__name {
+    font-size: 22px
+  }
+
+  .top-bar__email {
+    display: none;
+  }
+}

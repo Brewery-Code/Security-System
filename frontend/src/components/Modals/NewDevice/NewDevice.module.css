@@ -45,3 +45,9 @@
   background-color: #000;
   transform: scale(1.2);
 }
+
+@media (max-width:406px) {
+  .body__title {
+    width: 200px;
+  }
+}
