@@ -30,6 +30,7 @@ export default function LoggedIn({ userData }) {
         }
         const result = await response.json();
         setDevicesData(result);
+        console.log(result);
       } catch (error) {
         console.error(error);
       }
